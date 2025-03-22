@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Pohon Apel dengan Mawar di Bawah Sinar Bulan</title>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap");
+
+            body {
+                margin: 0;
+                overflow: hidden;
+                background: linear-gradient(
+                    to bottom,
+                    #0a0a2a,
+                    #191970,
+                    #483d8b
+                );
+                height: 100vh;
+                width: 100vw;
+            }
+
+            .container {
+                position: relative;
+                height: 100%;
+                width: 100%;
+            }
+
+            /* Bulan */
+            .moon {
+                position: absolute;
+                top: 50px;
+                right: 100px;
+                width: 80px;
+                height: 80px;
+                background: radial-gradient(
+                    circle at 30% 30%,
+                    #fffafa,
+                    #f0f8ff
+                );
+                border-radius: 50%;
+                box-shadow: 0 0 20px 10px rgba(255, 255, 240, 0.8);
+                animation: moonGlow 8s infinite alternate;
+            }
+
+            @keyframes moonGlow {
+                0% {
+                    box-shadow: 0 0 20px 10px rgba(255, 255, 240, 0.7);
+                }
+                100% {
+                    box-shadow: 0 0 30px 15px rgba(255, 255, 240, 0.9);
+                }
+            }
+
+            /* Tanah */
+            .ground {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                height: 25%;
+                background: linear-gradient(to bottom, #0a2e0a, #1a3a1a);
+                border-top: 2px solid #2a4a2a;
+            }
+
+            /* Pohon */
+            .tree {
+                position: absolute;
+                bottom: 25%;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .trunk {
+                width: 30px;
+                height: 150px;
+                background: linear-gradient(
+                    to right,
+                    #3d1c02,
+                    #6b4226,
+                    #3d1c02
+                );
+                margin: 0 auto;
+                position: relative;
+                border-radius: 5px;
+                z-index: 2;
+            }
+
+            .branches-container {
+                position: relative;
+                width: 280px;
+                height: 280px;
+                margin-left: -125px;
+                z-index: 1;
+            }
+
+            .branch {
+                position: absolute;
+                background: radial-gradient(
+                    ellipse at center,
+                    #1e3b1e,
+                    #0f290f
+                );
+                border-radius: 50%;
+                box-shadow: 0 0 10px rgba(0, 40, 0, 0.5) inset;
+            }
+
+            /* Apel */
+            .apple {
+                position: absolute;
+                background: radial-gradient(
+                    circle at 70% 30%,
+                    #d40000,
+                    #8b0000
+                );
+                border-radius: 50%;
+                box-shadow: 0 0 5px rgba(200, 0, 0, 0.7);
+                z-index: 3;
+            }
+
+            /* Mawar */
+            .rose-container {
+                position: absolute;
+                bottom: 25%;
+                left: 0;
+                width: 100%;
+                height: 50px;
+                z-index: 0;
+            }
+
+            .rose {
+                position: absolute;
+                bottom: 0;
+                background: radial-gradient(
+                    circle at 30% 30%,
+                    #ff3366,
+                    #cc0033
+                );
+                border-radius: 50%;
+                box-shadow: 0 0 10px rgba(255, 51, 102, 0.7);
+                z-index: 2;
+                animation: roseGlow 4s infinite alternate;
+            }
+
+            .rose-stem {
+                position: absolute;
+                background: #1e5631;
+                border-radius: 2px;
+                z-index: 1;
+                transform-origin: bottom center;
+            }
+
+            .rose-leaf {
+                position: absolute;
+                background: #2d8659;
+                border-radius: 50% 20% 50% 20%;
+                transform: rotate(45deg);
+                z-index: 1;
+            }
+
+            @keyframes roseGlow {
+                0% {
+                    box-shadow: 0 0 5px rgba(255, 51, 102, 0.7);
+                }
+                100% {
+                    box-shadow: 0 0 15px rgba(255, 51, 102, 0.9);
+                }
+            }
+
+            /* Bintang */
+            .star {
+                position: absolute;
+                background: white;
+                border-radius: 50%;
+                animation: twinkle 4s infinite alternate;
+            }
+
+            @keyframes twinkle {
+                0% {
+                    opacity: 0.2;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+
+            /* Pesan */
+            .message {
+                position: absolute;
+                bottom: 10%;
+                left: 50%;
+                transform: translateX(-50%);
+                font-family: "Dancing Script", cursive;
+                color: #fffaf0;
+                text-shadow:
+                    0 0 5px #ff69b4,
+                    0 0 10px #ff1493;
+                font-size: 28px;
+                text-align: center;
+                animation: messageGlow 5s infinite alternate;
+                width: 90%;
+                line-height: 1.5;
+            }
+
+            @keyframes messageGlow {
+                0% {
+                    text-shadow:
+                        0 0 5px #ff69b4,
+                        0 0 10px #ff1493;
+                }
+                100% {
+                    text-shadow:
+                        0 0 10px #ff69b4,
+                        0 0 20px #ff1493,
+                        0 0 30px #ff00ff;
+                }
+            }
+
+            /* Kunang-kunang */
+            .firefly {
+                position: absolute;
+                width: 2px;
+                height: 2px;
+                background: #ffffa0;
+                border-radius: 50%;
+                box-shadow:
+                    0 0 5px #ffff80,
+                    0 0 8px #ffff80;
+                opacity: 0;
+                animation: fly 10s infinite linear;
+                z-index: 4;
+            }
+
+            @keyframes fly {
+                0% {
+                    opacity: 0;
+                }
+                10% {
+                    opacity: 0.8;
+                }
+                50% {
+                    opacity: 0.4;
+                }
+                90% {
+                    opacity: 0.9;
+                }
+                100% {
+                    opacity: 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="moon"></div>
+            <div class="ground"></div>
+            <div class="tree">
+                <div class="branches-container" id="branches"></div>
+                <div class="trunk"></div>
+            </div>
+            <div class="rose-container" id="roses"></div>
+            <div class="message">
+                Tidur nyenyak bidadariku.<br />I Love You, My Belle
+            </div>
+            <div class="audio-container">
+                <audio controls>
+                    <source
+                        src="attached_assets/Zendaya 'Neverland' Lyric Video.mp3"
+                        type="audio/mpeg"
+                    />
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
+
+        <script>
+            // Fungsi membuat bintang
+            function createStars() {
+                const container = document.querySelector(".container");
+                for (let i = 0; i < 200; i++) {
+                    const star = document.createElement("div");
+                    star.classList.add("star");
+                    star.style.left = `${Math.random() * 100}%`;
+                    star.style.top = `${Math.random() * 70}%`;
+
+                    // Ukuran bintang bervariasi
+                    const size = Math.random() * 2 + 1;
+                    star.style.width = `${size}px`;
+                    star.style.height = `${size}px`;
+
+                    // Kecerahan bintang bervariasi
+                    star.style.opacity = Math.random() * 0.8 + 0.2;
+
+                    // Animasi berkedip dengan timing berbeda
+                    star.style.animationDelay = `${Math.random() * 4}s`;
+                    star.style.animationDuration = `${Math.random() * 6 + 2}s`;
+
+                    container.appendChild(star);
+                }
+            }
+
+            // Fungsi membuat daun pohon
+            function createBranches() {
+                const branchesContainer = document.getElementById("branches");
+
+                // Posisi dan ukuran daun
+                const branchPositions = [
+                    { width: 150, height: 150, top: 160, left: 65 },
+                    { width: 180, height: 180, top: 90, left: 50 },
+                    { width: 160, height: 160, top: 40, left: 60 },
+                    { width: 130, height: 130, top: 140, left: 30 },
+                    { width: 140, height: 140, top: 120, left: 170 },
+                    { width: 120, height: 120, top: 60, left: 140 },
+                    { width: 110, height: 110, top: 180, left: 130 },
+                    { width: 100, height: 100, top: 90, left: 10 },
+                    { width: 90, height: 90, top: 30, left: 20 },
+                    { width: 95, height: 95, top: 70, left: 180 },
+                ];
+
+                branchPositions.forEach((pos) => {
+                    const branch = document.createElement("div");
+                    branch.classList.add("branch");
+                    branch.style.width = `${pos.width}px`;
+                    branch.style.height = `${pos.height}px`;
+                    branch.style.top = `${pos.top}px`;
+                    branch.style.left = `${pos.left}px`;
+                    branchesContainer.appendChild(branch);
+                });
+            }
+
+            // Fungsi membuat apel
+            function createApples() {
+                const branchesContainer = document.getElementById("branches");
+
+                // Membuat 30 apel dengan posisi acak
+                for (let i = 0; i < 30; i++) {
+                    const apple = document.createElement("div");
+                    apple.classList.add("apple");
+
+                    // Posisi dalam daun pohon
+                    const top = Math.random() * 230 + 20;
+                    const left = Math.random() * 230 + 20;
+
+                    // Pastikan apel tidak terlalu di pinggir
+                    if ((left > 50 && left < 230) || (top > 50 && top < 230)) {
+                        apple.style.top = `${top}px`;
+                        apple.style.left = `${left}px`;
+
+                        // Ukuran apel bervariasi
+                        const size = Math.random() * 6 + 6;
+                        apple.style.width = `${size}px`;
+                        apple.style.height = `${size}px`;
+
+                        branchesContainer.appendChild(apple);
+                    }
+                }
+            }
+
+            // Fungsi membuat mawar
+            function createRoses() {
+                const roseContainer = document.getElementById("roses");
+
+                // Kelompok mawar di sekitar pohon
+                const roseGroups = [
+                    { startX: 15, endX: 35, count: 8 },
+                    { startX: 40, endX: 60, count: 5 },
+                    { startX: 65, endX: 85, count: 7 },
+                    { startX: 90, endX: 110, count: 9 },
+                    { startX: 115, endX: 135, count: 4 },
+                    { startX: 140, endX: 160, count: 6 },
+                    { startX: 165, endX: 185, count: 8 },
+                ];
+
+                roseGroups.forEach((group) => {
+                    for (let i = 0; i < group.count; i++) {
+                        // Posisi acak dalam kelompok
+                        const xPos =
+                            group.startX +
+                            Math.random() * (group.endX - group.startX);
+
+                        // Mawar
+                        const rose = document.createElement("div");
+                        rose.classList.add("rose");
+
+                        // Ukuran mawar bervariasi
+                        const size = Math.random() * 8 + 8;
+                        rose.style.width = `${size}px`;
+                        rose.style.height = `${size}px`;
+                        rose.style.left = `${xPos}%`;
+
+                        // Ketinggian mawar bervariasi
+                        const height = Math.random() * 40;
+                        rose.style.bottom = `${height}px`;
+
+                        // Animasi dengan delay berbeda
+                        rose.style.animationDelay = `${Math.random() * 5}s`;
+
+                        // Batang mawar
+                        const stem = document.createElement("div");
+                        stem.classList.add("rose-stem");
+                        stem.style.width = `${2}px`;
+                        stem.style.height = `${height + size / 2}px`;
+                        stem.style.left = `${xPos}%`;
+                        stem.style.bottom = `0`;
+                        stem.style.marginLeft = `${size / 2 - 1}px`;
+
+                        // Rotasi batang sedikit acak
+                        const rotation = Math.random() * 10 - 5;
+                        stem.style.transform = `rotate(${rotation}deg)`;
+
+                        // Daun pada batang
+                        if (Math.random() > 0.3) {
+                            const leaf = document.createElement("div");
+                            leaf.classList.add("rose-leaf");
+                            const leafSize = Math.random() * 4 + 6;
+                            leaf.style.width = `${leafSize}px`;
+                            leaf.style.height = `${leafSize * 0.7}px`;
+                            leaf.style.left = `${xPos}%`;
+                            leaf.style.bottom = `${Math.random() * height * 0.7}px`;
+                            leaf.style.marginLeft = `${size / 2 + (Math.random() > 0.5 ? leafSize : -leafSize)}px`;
+                            roseContainer.appendChild(leaf);
+                        }
+
+                        roseContainer.appendChild(stem);
+                        roseContainer.appendChild(rose);
+                    }
+                });
+            }
+
+            // Fungsi membuat kunang-kunang
+            function createFireflies() {
+                const container = document.querySelector(".container");
+                for (let i = 0; i < 40; i++) {
+                    const firefly = document.createElement("div");
+                    firefly.classList.add("firefly");
+
+                    // Posisi awal
+                    firefly.style.left = `${Math.random() * 100}%`;
+                    firefly.style.top = `${20 + Math.random() * 60}%`;
+
+                    // Animasi
+                    firefly.style.animationDelay = `${Math.random() * 10}s`;
+                    firefly.style.animationDuration = `${Math.random() * 15 + 5}s`;
+
+                    container.appendChild(firefly);
+
+                    // Gerakan kunang-kunang
+                    setInterval(() => {
+                        firefly.style.left = `${Math.random() * 100}%`;
+                        firefly.style.top = `${20 + Math.random() * 60}%`;
+                        firefly.style.transition = `left ${Math.random() * 10 + 5}s ease-in-out, top ${Math.random() * 10 + 5}s ease-in-out`;
+                    }, 10000);
+                }
+            }
+
+            // Inisialisasi semua elemen
+            window.onload = function () {
+                createStars();
+                createBranches();
+                createApples();
+                createRoses();
+                createFireflies();
+            };
+
+            // Create audio element programmatically
+            const bgMusic = new Audio("background-music.mp3");
+            bgMusic.loop = true;
+
+            // Setup button functionality
+            const bgMusicBtn = document.getElementById("bgMusicBtn");
+            let isPlaying = false;
+
+            bgMusicBtn.addEventListener("click", function () {
+                if (isPlaying) {
+                    bgMusic.pause();
+                    bgMusicBtn.textContent = "Play Background Music";
+                } else {
+                    bgMusic.play();
+                    bgMusicBtn.textContent = "Pause Background Music";
+                }
+                isPlaying = !isPlaying;
+            });
+        </script>
+    </body>
+</html>
